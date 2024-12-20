@@ -1,0 +1,4 @@
+[Error Time: 2024-12-20 02:44:43.943 PM], [Error Level: [31merror[39m], [Error Message: 	[31mFailed to connect Payment Service Kafka Producer: Connection error: [39m], [Error Location: Unknown location]
+[Error Time: 2024-12-20 02:47:00.144 PM], [Error Level: [31merror[39m], [Error Message: 	[31mFailed to send payment event [PaymentService-Kafka]: The producer is disconnected[39m], [Error Location: Unknown location]
+[Error Time: 2024-12-20 12:12:52.266 PM], [Error Level: [31merror[39m], [Error Message: 	[31mFailed to connect Payment Service Kafka Producer: Connection error: connect ECONNREFUSED ::1:9092[39m], [Error Location: Unknown location]
+[Error Time: 2024-12-20 12:28:07.859 PM], [Error Level: [31merror[39m], [Error Message: 	[31mFailed to connect Payment Service Kafka Producer: Connection timeout[39m], [Error Location: Unknown location]

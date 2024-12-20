@@ -1,0 +1,31 @@
+2024-12-14T22:50:16.921Z [error] Async error occurred!
+Location: unknown:unknown
+Error: Async error occurred!
+    at C:\Users\stuff\OneDrive\Masaüstü\Dev.Mert\Bootcamps\NewMindAI\ECommerce-Microservice\backend\monolith\product-service\src\routes\TestRouter.ts:18:11
+    at Layer.handle [as handle_request] (C:\Users\stuff\OneDrive\Masaüstü\Dev.Mert\Bootcamps\NewMindAI\ECommerce-Microservice\backend\monolith\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\stuff\OneDrive\Masaüstü\Dev.Mert\Bootcamps\NewMindAI\ECommerce-Microservice\backend\monolith\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\stuff\OneDrive\Masaüstü\Dev.Mert\Bootcamps\NewMindAI\ECommerce-Microservice\backend\monolith\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\stuff\OneDrive\Masaüstü\Dev.Mert\Bootcamps\NewMindAI\ECommerce-Microservice\backend\monolith\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\stuff\OneDrive\Masaüstü\Dev.Mert\Bootcamps\NewMindAI\ECommerce-Microservice\backend\monolith\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\stuff\OneDrive\Masaüstü\Dev.Mert\Bootcamps\NewMindAI\ECommerce-Microservice\backend\monolith\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\stuff\OneDrive\Masaüstü\Dev.Mert\Bootcamps\NewMindAI\ECommerce-Microservice\backend\monolith\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\stuff\OneDrive\Masaüstü\Dev.Mert\Bootcamps\NewMindAI\ECommerce-Microservice\backend\monolith\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\stuff\OneDrive\Masaüstü\Dev.Mert\Bootcamps\NewMindAI\ECommerce-Microservice\backend\monolith\node_modules\express\lib\router\index.js:47:12)
+2024-12-14T22:51:24.665Z [error] Something broke!
+Location: unknown:unknown
+Error: Something broke!
+    at C:\Users\stuff\OneDrive\Masaüstü\Dev.Mert\Bootcamps\NewMindAI\ECommerce-Microservice\backend\monolith\expressApp.ts:19:9
+    at Layer.handle [as handle_request] (C:\Users\stuff\OneDrive\Masaüstü\Dev.Mert\Bootcamps\NewMindAI\ECommerce-Microservice\backend\monolith\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\stuff\OneDrive\Masaüstü\Dev.Mert\Bootcamps\NewMindAI\ECommerce-Microservice\backend\monolith\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\stuff\OneDrive\Masaüstü\Dev.Mert\Bootcamps\NewMindAI\ECommerce-Microservice\backend\monolith\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\stuff\OneDrive\Masaüstü\Dev.Mert\Bootcamps\NewMindAI\ECommerce-Microservice\backend\monolith\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\stuff\OneDrive\Masaüstü\Dev.Mert\Bootcamps\NewMindAI\ECommerce-Microservice\backend\monolith\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\stuff\OneDrive\Masaüstü\Dev.Mert\Bootcamps\NewMindAI\ECommerce-Microservice\backend\monolith\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\stuff\OneDrive\Masaüstü\Dev.Mert\Bootcamps\NewMindAI\ECommerce-Microservice\backend\monolith\node_modules\express\lib\router\index.js:280:10)
+    at jsonParser (C:\Users\stuff\OneDrive\Masaüstü\Dev.Mert\Bootcamps\NewMindAI\ECommerce-Microservice\backend\monolith\node_modules\body-parser\lib\types\json.js:113:7)
+    at Layer.handle [as handle_request] (C:\Users\stuff\OneDrive\Masaüstü\Dev.Mert\Bootcamps\NewMindAI\ECommerce-Microservice\backend\monolith\node_modules\express\lib\router\layer.js:95:5)
+2024-12-14T22:56:19.406Z [error] Something broke!
+Location: C:\Users\stuff\OneDrive\Masaüstü\Dev.Mert\Bootcamps\NewMindAI\ECommerce-Microservice\backend\monolith\expressApp.ts:19:9
+Error: Something broke!
+    at C:\Users\stuff\OneDrive\Masaüstü\Dev.Mert\Bootcamps\NewMindAI\ECommerce-Microservice\backend\monolith\expressApp.ts:19:9
+    at Layer.handle [as handle_request] (C:\Users\stuff\OneDrive\Masaüstü\Dev.Mert\Bootcamps\NewMindAI\ECommerce-Microservice\backend\monolith\node_modules\express\lib\router\layer.js:95:5)
