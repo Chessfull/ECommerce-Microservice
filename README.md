@@ -4,9 +4,13 @@ This project is an **E-commerce platform** built using a combination of **modula
 
 # Table of Contents
 - [Project Overview](#project-overview) :mag_right:
-  * [Coding Strategy](#data-layer) :page_with_curl:
+
+  * [Coding Strategy](#data-layer) 
+
   * [Service Responsibilities](#data-layer)
+
   * [Architecture Overview](#data-layer)
-- [Project Planning and Flow on Miro](#project-overview)
+
+- [Project Planning and Flow on Miro](#project-overview) :wrench:
 - [Project Demo Video](#project-overview) :movie_camera:
-- [Getting Started](#using)
+- [Getting Started](#using) :rocket:
