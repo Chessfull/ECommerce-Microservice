@@ -5,7 +5,7 @@
 This project is an **E-commerce platform** built using a combination of **modular monolithic** and **microservices architectures**. The application is designed to **handle** key e-commerce operations such as **user management**, **product management**, **shopping cart operations**, **payment processing**, **order creation**, and **invoice generation**. The system is developed with a focus on **scalability**, **performance**, and **asynchronous communication** between services.
 
 # Table of Contents
-- [Project Overview](#project-overview) :mag_right:
+- [Project Overview](#coding-strategy) :mag_right:
 
   * [Coding Strategy](#coding-strategy) 
 
