@@ -16,6 +16,7 @@ This project is an **E-commerce platform** built using a combination of **modula
 - [Project Planning and Flow on Miro](#project-planning-and-flow-on-miro) :wrench:
 - [Project Demo Video](#project-demo-video) :movie_camera:
 - [Getting Started](#getting-started) :rocket:
+- [API Documentation Postman](#apı-documentation-postman)
 
 # Coding Strategy
 
@@ -266,6 +267,14 @@ docker-compose down
 ```
 ________________________________________________________________________________________________________________________
   **[⬆ Back to Table of Contents](#table-of-contents)**
+________________________________________________________________________________________________________________________
+
+# API Documentation Postman
+
+You can find API documentation of backend here: 
+
+https://web.postman.co/workspace/17dc098e-24ec-4687-87fc-59431f6be2f3/documentation/39362793-5a0dde56-cef1-40b4-9964-534151282795
+
 ________________________________________________________________________________________________________________________
 
 # :incoming_envelope: Contact Information :incoming_envelope:
