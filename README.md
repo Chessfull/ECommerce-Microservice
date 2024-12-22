@@ -241,15 +241,15 @@ docker ps
 
 Confirm that the services are up and running:
 
-Monolith Service: http://localhost:'monolith-service-port'
+Monolith Service: http://localhost:monolith-service-port
 
-Basket Service: http://localhost:'basket-service-port'
+Basket Service: http://localhost:basket-service-port
 
-Payment Service: http://localhost:'payment-service-port'
+Payment Service: http://localhost:payment-service-port
 
-Order Service: http://localhost:'order-service-port'
+Order Service: http://localhost:order-service-port
 
-Invoice Service: http://localhost:'invoice-service-port'
+Invoice Service: http://localhost:invoice-service-port
 
 Kafka, Zookeper and Redis Service.
 
