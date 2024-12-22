@@ -9,13 +9,13 @@ This project is an **E-commerce platform** built using a combination of **modula
 
   * [Coding Strategy](#coding-strategy) 
 
-  * [Service Responsibilities](#data-layer)
+  * [Service Responsibilities](#service-responsibilities)
 
-  * [Architecture Overview](#data-layer)
+  * [Architecture Overview](#architecture-overview)
 
-- [Project Planning and Flow on Miro](#project-overview) :wrench:
-- [Project Demo Video](#project-overview) :movie_camera:
-- [Getting Started](#using) :rocket:
+- [Project Planning and Flow on Miro](#project-planning-and-flow-on-miro) :wrench:
+- [Project Demo Video](#project-demo-video) :movie_camera:
+- [Getting Started](#getting-started) :rocket:
 
 # Coding Strategy
 
