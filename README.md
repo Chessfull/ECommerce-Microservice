@@ -7,7 +7,7 @@ This project is an **E-commerce platform** built using a combination of **modula
 # Table of Contents
 - [Project Overview](#project-overview) :mag_right:
 
-  * [Coding Strategy](#data-layer) 
+  * [Coding Strategy](#coding-strategy) 
 
   * [Service Responsibilities](#data-layer)
 
