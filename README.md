@@ -195,6 +195,75 @@ ________________________________________________________________________________
 
 # Getting Started
 
+Follow these steps to set up and run the E-commerce application locally using Docker.
+
+### **Prerequisites**
+Ensure you have the following installed on your system:
+- [Docker](https://www.docker.com/get-started)
+
+### **Setup Instructions**
+
+1. **Clone the Repository**
+ ```bash
+git clone <repository-url>
+ cd <repository-name>
+```
+
+
+2. **Prepare Environment Variables**
+ 
+In the root directory, ensure you have a .env file for environment-specific configurations.
+
+Example .env file:
+
+```bash
+REDIS_HOST=redis
+KAFKA_BROKER=kafka:9092
+JWT_SECRET=your_jwt_secret
+etc...
+```
+
+3. **Start the Services**
+
+Run the following command to start all services defined in the docker-compose.yml file (-d for detached mode ) :
+
+```bash
+docker-compose up -d
+```
+
+4. **Verify the Setup**
+
+Check if the containers are running :
+
+```bash
+docker ps
+```
+
+Confirm that the services are up and running:
+
+Monolith Service: http://localhost:'monolith-service-port'
+
+Basket Service: http://localhost:'basket-service-port'
+
+Payment Service: http://localhost:'payment-service-port'
+
+Order Service: http://localhost:'order-service-port'
+
+Invoice Service: http://localhost:'invoice-service-port'
+
+Kafka, Zookeper and Redis Service.
+
+5. **Run Frontend and Get Enjoy!**
+   
+In frontend project run the project while your backend services are running.
+
+6. **Stop the Services**
+
+To stop the application, run :
+
+```bash
+docker-compose down
+```
 ________________________________________________________________________________________________________________________
   **[⬆ Back to Table of Contents](#table-of-contents)**
 ________________________________________________________________________________________________________________________
