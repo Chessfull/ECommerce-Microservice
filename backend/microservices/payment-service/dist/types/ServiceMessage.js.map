@@ -1,0 +1,1 @@
+{"version":3,"file":"ServiceMessage.js","sourceRoot":"","sources":["../../src/types/ServiceMessage.ts"],"names":[],"mappings":";AAAA,wFAAwF;;;AAExF,MAAa,cAAc;IAUzB,YAAY,SAAkB,EAAE,OAAY,EAAE,IAAQ;QACpD,IAAI,CAAC,SAAS,GAAG,SAAS,CAAC;QAC3B,IAAI,CAAC,OAAO,GAAG,OAAO,CAAC;QAEvB,IAAI,IAAI,KAAK,SAAS,EAAE,CAAC;YACvB,IAAI,CAAC,IAAI,GAAG,IAAI,CAAC;QACnB,CAAC;IACH,CAAC;CACF;AAlBD,wCAkBC"}

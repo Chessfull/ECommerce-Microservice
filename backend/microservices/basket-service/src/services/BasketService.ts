@@ -62,6 +62,7 @@ export class BasketService implements IBasketService {
       const { userId, productId, productName, quantity } = basketRequest;
 
       // -> Validate user
+      console.log("1");
       const isValidUser = await this.validateUser(userId);
       if (!isValidUser) {
         return new ServiceMessage(false, "User is invalid");
@@ -118,6 +119,7 @@ export class BasketService implements IBasketService {
   }
 
   private async validateUser(userId: string): Promise<boolean> {
+    console.log("2");
     // -> Check Redis cache first
     const cachedUserValid = await this.userValidRepository.getUserValid(userId);
 
@@ -128,7 +130,7 @@ export class BasketService implements IBasketService {
     // -> Validate with Identity Service if not in cache
     try {
       const response = await axios.get(
-        `http://localhost:3000/user/valid/${userId}`
+        `${process.env.MONOLITH_URL || 'http://localhost:3000'}/user/valid/${userId}` // -> In docker 'monolith'
       );
       const isValid = response.status === 200 && response.data?.isAvailable;
 
@@ -166,7 +168,7 @@ export class BasketService implements IBasketService {
     // -> Get product details from Product Service if not in cache
     try {
       const response = await axios.get(
-        `http://localhost:3000/products/${productId}`
+        `${process.env.MONOLITH_URL || 'http://localhost:3000'}/products/${productId}` // -> In docker 'monolith'
       );
 
       if (response.status === 200) {

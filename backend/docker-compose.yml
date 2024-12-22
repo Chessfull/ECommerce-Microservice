@@ -36,44 +36,125 @@ services:
       retries: 3
     networks:
       - app_network
-
-  elasticsearch:
-    image: bitnami/elasticsearch:latest
-    environment:
-      - ELASTICSEARCH_PASSWORD=elastictestnewmindai
+  
+  redis:
+    image: redis:latest
+    container_name: redis
     ports:
-      - "9200:9200"
+      - "6379:6379"
     volumes:
-      - elasticsearch_data:/bitnami/elasticsearch/data
-    networks:
-      - app_network  # Connected to the same network as kafka and zookeeper
+      - redis_data:/data
+    command: redis-server --appendonly yes
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:9200/_cluster/health?wait_for_status=yellow&timeout=50s"]
-      interval: 30s
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
       retries: 3
+    networks:
+      - app_network
 
-  # nodejs-app:
-  #   image: node:20
-  #   container_name: nodejs-app
-  #   working_dir: /usr/src/app
-  #   volumes:
-  #     - ./nodejs-app:/usr/src/app
-  #   command: "npm start"
+  # elasticsearch:
+  #   image: bitnami/elasticsearch:latest
   #   environment:
-  #     - ELASTICSEARCH_URL=http://elasticsearch:9200
-  #     - ELASTIC_USERNAME=elastic
-  #     - ELASTIC_PASSWORD=elastictestnewmindai
-  #     - KAFKA_BROKER=kafka:29092
-  #   depends_on:
-  #     - elasticsearch
-  #     - kafka
-  #   networks:
-  #     - app_network
+  #     - ELASTICSEARCH_PASSWORD=elastictestnewmindai
   #   ports:
-  #     - "3000:3000"
+  #     - "9200:9200"
+  #   volumes:
+  #     - elasticsearch_data:/bitnami/elasticsearch/data
+  #   networks:
+  #     - app_network  # Connected to the same network as kafka and zookeeper
+  #   healthcheck:
+  #     test: ["CMD", "curl", "-f", "http://localhost:9200/_cluster/health?wait_for_status=yellow&timeout=50s"]
+  #     interval: 30s
+  #     retries: 3
+
+  monolith:
+    build:
+      context: ./monolith
+      dockerfile: Dockerfile
+    container_name: monolith
+    ports:
+      - "3000:3000"  
+    environment:
+      - KAFKA_BROKERS=kafka:29092
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      # - ELASTICSEARCH_URL=http://elasticsearch:9200
+    depends_on:
+      - kafka
+      # - elasticsearch
+      - redis
+    networks:
+      - app_network
+
+  basket-service:
+    build:
+      context: ./microservices/basket-service
+      dockerfile: Dockerfile
+    container_name: basket-service
+    ports:
+      - "3001:3001"  
+    environment:
+      - KAFKA_BROKERS=kafka:29092
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - MONOLITH_URL=http://monolith:3000
+    depends_on:
+      - kafka
+      - redis
+    networks:
+      - app_network
+
+
+  payment-service:
+    build:
+      context: ./microservices/payment-service
+      dockerfile: Dockerfile
+    container_name: payment-service
+    ports:
+      - "3002:3002"  
+    environment:
+      - KAFKA_BROKERS=kafka:29092
+    depends_on:
+      - kafka
+    networks:
+      - app_network
+
+
+  order-service:
+    build:
+      context: ./microservices/order-service
+      dockerfile: Dockerfile
+    container_name: order-service
+    ports:
+      - "3003:3003" 
+    environment:
+      - KAFKA_BROKERS=kafka:29092 
+    depends_on:
+      - kafka
+    networks:
+      - app_network
+
+
+  invoice-service:
+    build:
+      context: ./microservices/invoice-service
+      dockerfile: Dockerfile
+    container_name: invoice-service
+    ports:
+      - "3004:3004" 
+    environment:
+      - KAFKA_BROKERS=kafka:29092
+    depends_on:
+      - kafka
+    networks:
+      - app_network
+
+# volumes:
+#   elasticsearch_data:
 
 volumes:
-  elasticsearch_data:
+  redis_data: {}
 
 networks:
   app_network:

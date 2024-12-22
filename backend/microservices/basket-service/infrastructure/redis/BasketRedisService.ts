@@ -19,8 +19,6 @@ export class BasketRedisService implements IBasketRedisService {
    
     const value = await this._redis.get(key);
 
-
-
     if (value === null) {
       return new ServiceMessage(
         false,

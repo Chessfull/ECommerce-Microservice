@@ -18,6 +18,7 @@ export class UserValidRepository implements IUserValidRepository {
 
   async getUserValid(key:string):Promise<boolean | null>{
 
+
     try {
 
     const serviceResult = await this._redisService.getCache(key);

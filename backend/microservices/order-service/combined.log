@@ -56,3 +56,4 @@
 [Error Time: 2024-12-21 10:13:36.785 PM], [Error Level: [32minfo[39m], [Error Message: 	[32mKafka consumer started successfully[39m], [Error Location: kafka.ts:57:14]
 [Error Time: 2024-12-21 11:24:21.935 PM], [Error Level: [32minfo[39m], [Error Message: 	[32mOrder Service Kafka Consumer connected[39m], [Error Location: kafka.ts:39:14]
 [Error Time: 2024-12-21 11:24:24.958 PM], [Error Level: [32minfo[39m], [Error Message: 	[32mKafka consumer started successfully[39m], [Error Location: kafka.ts:57:14]
+[Error Time: 2024-12-22 02:42:13.168 PM], [Error Level: [32minfo[39m], [Error Message: 	[32mOrder Service Kafka Consumer connected[39m], [Error Location: kafka.js:46:29]

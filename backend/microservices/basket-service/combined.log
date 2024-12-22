@@ -500,3 +500,4 @@
 [Error Time: 2024-12-21 11:22:31.032 PM], [Error Level: [32minfo[39m], [Error Message: 	[32mNew WebSocket client connected[39m], [Error Location: Unknown location]
 [Error Time: 2024-12-21 11:24:16.962 PM], [Error Level: [32minfo[39m], [Error Message: 	[32mBasket event consumer connected to Kafka[39m], [Error Location: main.ts:68:14]
 [Error Time: 2024-12-21 11:24:16.974 PM], [Error Level: [32minfo[39m], [Error Message: 	[32mConsumer subscribed to topics[39m], [Error Location: Unknown location]
+[Error Time: 2024-12-22 02:21:53.429 PM], [Error Level: [31merror[39m], [Error Message: 	[31mFailed to start basket event consumer: KafkaJSNumberOfRetriesExceeded: Connection error: [39m], [Error Location: main.js:80:29]

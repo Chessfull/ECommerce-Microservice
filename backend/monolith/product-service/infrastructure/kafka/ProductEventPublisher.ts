@@ -21,7 +21,7 @@ export class ProductEventPublisher {
   constructor() {
     this.kafka = new Kafka({
       clientId: "product-service",
-      brokers: ["localhost:9092"],
+      brokers: [process.env.KAFKA_BROKERS || "localhost:9092"],
       retry: {
         initialRetryTime: 100,
         retries: 5,

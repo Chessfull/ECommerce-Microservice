@@ -40,7 +40,7 @@ export class BasketEventConsumer {
   ) {
     this.kafka = new Kafka({
       clientId: "basket-service",
-      brokers: ["localhost:9092"],
+      brokers: [process.env.KAFKA_BROKERS || "localhost:9092"],
       retry: {
         initialRetryTime: 1000,
         retries: 10,

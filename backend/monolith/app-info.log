@@ -218,3 +218,5 @@
 [Error Time: 2024-12-21 11:01:10.997 PM], [Error Level: [32minfo[39m], [Error Message: 	[32mKafka product event published successfully[39m], [Error Location: ProductEventPublisher.ts:59:14]
 [Error Time: 2024-12-21 11:24:22.454 PM], [Error Level: [32minfo[39m], [Error Message: 	[32mIdentity Service Kafka Producer connected[39m], [Error Location: UserEventPublisher.ts:34:14]
 [Error Time: 2024-12-21 11:24:22.461 PM], [Error Level: [32minfo[39m], [Error Message: 	[32mProduct Service Kafka Producer connected[39m], [Error Location: ProductEventPublisher.ts:39:14]
+[Error Time: 2024-12-22 02:09:30.363 PM], [Error Level: [31merror[39m], [Error Message: 	[31mFailed to connect Identity Service Kafka Producer: Connection error: [39m], [Error Location: Unknown location]
+[Error Time: 2024-12-22 02:09:32.557 PM], [Error Level: [31merror[39m], [Error Message: 	[31mFailed to connect Product Service Kafka Producer: Connection error: [39m], [Error Location: Unknown location]

@@ -201,3 +201,4 @@
 [Error Time: 2024-12-21 09:51:34.939 PM], [Error Level: [31merror[39m], [Error Message: 	[31mAn error occurred while setting data in 'Redis Service' for key: basket:676705334c111e080c241339.[39m], [Error Location: BasketRepository.ts:51:16]
 [Error Time: 2024-12-21 10:56:21.751 PM], [Error Level: [31merror[39m], [Error Message: 	[31mAn error occurred while setting data in 'Redis Service' for key: 67671d654c111e080c241379.[39m], [Error Location: BasketItemRepository.ts:53:16]
 [Error Time: 2024-12-21 11:06:37.675 PM], [Error Level: [31merror[39m], [Error Message: 	[31mThere is no value with that 67659bde34dd9215b56527ca key...[39m], [Error Location: BasketItemRepository.ts:30:14]
+[Error Time: 2024-12-22 02:21:53.429 PM], [Error Level: [31merror[39m], [Error Message: 	[31mFailed to start basket event consumer: KafkaJSNumberOfRetriesExceeded: Connection error: [39m], [Error Location: main.js:80:29]

@@ -25,9 +25,9 @@ export const ProductCard = forwardRef<HTMLDivElement, ProductCardProps>(
         const isAddAction = data.updateData.action === "add";
 
         if (isDifferentUser && isCorrectProduct && isAddAction) {
-          setCartCount(prev => prev + 1);
+          setCartCount((prev) => prev + 1);
           setTimeout(() => {
-            setCartCount(prev => Math.max(0, prev - 1));
+            setCartCount((prev) => Math.max(0, prev - 1));
           }, 15000);
         }
       },
@@ -37,7 +37,7 @@ export const ProductCard = forwardRef<HTMLDivElement, ProductCardProps>(
     useEffect(() => {
       if (socket && product._id) {
         socket.emit("joinRoom", product._id);
-        
+
         const handleUpdate = (data: any) => {
           handleBasketUpdate(data);
         };
@@ -65,13 +65,17 @@ export const ProductCard = forwardRef<HTMLDivElement, ProductCardProps>(
             {cartCount} users added this
           </div>
         )}
-        
-        <div className="relative group">
-          <div className="aspect-w-4 aspect-h-3 overflow-hidden">
+
+        <div className="relative group px-4 pt-8">
+          <div className="aspect-w-4 aspect-h-3 overflow-hidden rounded-lg">
             <img
               src={product.image.url}
               alt={product.name}
-              className="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-300"
+              className="w-4/5 h-40 object-contain mx-auto transform group-hover:scale-105 transition-transform duration-300"
+              loading="lazy"
+              onError={(e) => {
+                (e.target as HTMLImageElement).src = "https://t3.ftcdn.net/jpg/04/84/88/76/360_F_484887682_Mx57wpHG4lKrPAG0y7Q8Q7bJ952J3TTO.jpg";
+              }}
             />
           </div>
           <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-opacity duration-300" />
@@ -84,7 +88,7 @@ export const ProductCard = forwardRef<HTMLDivElement, ProductCardProps>(
           <p className="text-gray-600 line-clamp-2 mb-4 text-sm">
             {product.description}
           </p>
-          
+
           <div className="flex flex-col space-y-4">
             <div className="flex justify-between items-center">
               <span className="text-2xl font-bold text-gray-800">
@@ -93,7 +97,7 @@ export const ProductCard = forwardRef<HTMLDivElement, ProductCardProps>(
               <div className="flex items-center gap-3">
                 <div className="flex items-center border border-gray-200 rounded-lg bg-gray-50">
                   <button
-                    onClick={() => setQuantity(prev => Math.max(1, prev - 1))}
+                    onClick={() => setQuantity((prev) => Math.max(1, prev - 1))}
                     className="p-2 hover:bg-gray-100 rounded-l-lg transition-colors"
                   >
                     <Minus className="h-4 w-4 text-gray-600" />
@@ -102,7 +106,7 @@ export const ProductCard = forwardRef<HTMLDivElement, ProductCardProps>(
                     {quantity}
                   </span>
                   <button
-                    onClick={() => setQuantity(prev => prev + 1)}
+                    onClick={() => setQuantity((prev) => prev + 1)}
                     className="p-2 hover:bg-gray-100 rounded-r-lg transition-colors"
                   >
                     <Plus className="h-4 w-4 text-gray-600" />
@@ -110,7 +114,7 @@ export const ProductCard = forwardRef<HTMLDivElement, ProductCardProps>(
                 </div>
               </div>
             </div>
-            
+
             <button
               onClick={handleAddToCart}
               className="w-full py-3 bg-gradient-to-r from-gray-800 to-gray-700 text-white rounded-lg hover:from-gray-700 hover:to-gray-600 transition-all duration-300 flex items-center justify-center gap-2 font-medium"
