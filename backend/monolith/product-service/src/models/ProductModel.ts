@@ -1,6 +1,6 @@
 import { Document, ObjectId, Schema, model } from "mongoose";
 
-// This is the interface for the Product Schema in MongoDB
+// -> This is the interface for the Product Schema in MongoDB
 export interface Product extends Document {
   _id: ObjectId;
   name: string;
@@ -16,7 +16,7 @@ export interface Product extends Document {
   deletedAt: Date | null; // Timestamp for soft delete
 }
 
-// I used static categories in my scenario for now
+// -> I used static categories in my scenario for now
 const staticCategories = [
   "Monitor",
   "Keyboard",

@@ -8,8 +8,11 @@ import { logger } from "../config/logger";
 export class OrderRepository implements IOrderRepository{
 
     async createOrder(order:Order) : Promise<Order | null> {
-        try {
+        
+      
+      try {
             const newOrder=new Order(order);
+            console.log("ORDER at Repository",order);
             await newOrder.save();
             return order;
         } catch (error) {

@@ -7,4 +7,5 @@ export interface IBasketService{
     getBasket(userId: string): Promise<ServiceMessage<BasketDto>>;
     saveBasket(basketRequest: BasketRequest): Promise<ServiceMessage<BasketDto>>;
     deleteBasket(userId: string): Promise<ServiceMessage<void>>;
+    removeProductFromBasket(userId: string, productId: string): Promise<ServiceMessage<BasketDto>>;
 }

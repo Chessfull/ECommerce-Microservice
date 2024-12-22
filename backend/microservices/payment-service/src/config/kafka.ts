@@ -1,3 +1,5 @@
+// **************** Payment Service Kafka Producer Settings ****************
+
 import { Kafka, Producer } from "kafkajs";
 import { logger } from "./logger";
 import { PaymentEvent } from "../types/PaymentEvent";

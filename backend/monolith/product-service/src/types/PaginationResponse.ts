@@ -1,3 +1,4 @@
+// -> I will use infinite scroll in my frontend
 export interface PaginationResponse<T> {
     products: T[];
     pagination: {

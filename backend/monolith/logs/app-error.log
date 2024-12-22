@@ -115,3 +115,7 @@
 [Error Time: 2024-12-20 10:52:42.820 PM], [Error Level: [31merror[39m], [Error Message: 	[31m[ProductRepository - findAll]:  index_not_found_exception[39m
 [31m	Root causes:[39m
 [31m		index_not_found_exception: no such index [products][39m], [Error Location: Unknown location]
+[Error Time: 2024-12-21 11:50:17.447 AM], [Error Level: [31merror[39m], [Error Message: 	[31mFailed to connect Identity Service Kafka Producer: Connection error: [39m], [Error Location: Unknown location]
+[Error Time: 2024-12-21 11:50:58.439 AM], [Error Level: [31merror[39m], [Error Message: 	[31mFailed to connect Identity Service Kafka Producer: Connection error: [39m], [Error Location: Unknown location]
+[Error Time: 2024-12-21 11:51:01.189 AM], [Error Level: [31merror[39m], [Error Message: 	[31mFailed to connect Product Service Kafka Producer: Connection error: [39m], [Error Location: Unknown location]
+[Error Time: 2024-12-21 11:00:55.972 PM], [Error Level: [31merror[39m], [Error Message: 	[31mUnexpected field[39m], [Error Location: layer.js:71:5]

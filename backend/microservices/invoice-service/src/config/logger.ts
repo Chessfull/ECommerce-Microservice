@@ -1,17 +1,18 @@
+// **************** My Global Error Handling Settings ****************
+
 import winston from "winston";
 import path from "path";
 
 const { combine, timestamp, printf, colorize, align, errors } = winston.format;
 
-// Helper to extract the caller location
+// -> Helper to extract the caller location
 export const getCallerLocation = () => {
   const stack = new Error().stack || "";
   const stackLines = stack.split("\n");
 
-  // Skip the first two lines (Error and current function)
-  const callerLine = stackLines[3]; // Adjust the index based on where this function is called
+    // -> For Error Location
+  const callerLine = stackLines[3]; 
   if (callerLine) {
-    // Extract the file, method, and line number
     const match = callerLine.match(/\((.*):(\d+):(\d+)\)/);
     if (match) {
       const [_, filePath, line, column] = match;
@@ -52,7 +53,6 @@ export const logger = winston.createLogger({
   ],
 });
 
-// Add a wrapper around logger methods to inject the caller location
 ["info", "error"].forEach((level) => {
   const originalMethod = (logger as any)[level];
   (logger as any)[level] = (...args: any[]) => {

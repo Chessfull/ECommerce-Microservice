@@ -1,8 +1,13 @@
+// ************* Managing Route Organization Here *************
+
 import { Route, Routes, Navigate } from 'react-router-dom';
 import { useAuth } from "../src/contexts/AuthContext"
 import Product from "./components/Product/main";
-import AddProduct from "../src/components/Product/ProductControls/AddProduct";
-import EditProduct from "../src/components/Product/ProductControls/EditProduct";
+import AddProduct from "./pages/AddProduct";
+import EditProduct from "./pages/EditProduct";
+import { Profile } from './pages/Profile';
+import { Orders } from './pages/Orders';
+import { Invoices } from './pages/Invoices';
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const { isAuthenticated } = useAuth();
@@ -17,15 +22,14 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
 const RouterComponent = () => {
   return (
     <Routes>
-      {/* Public route */}
+     
       <Route path="/" element={<Product />} />
       
-      {/* Protected routes */}
       <Route
         path="/add-product"
         element={
           <ProtectedRoute>
-            <AddProduct />
+            <AddProduct/>
           </ProtectedRoute>
         }
       />
@@ -38,7 +42,33 @@ const RouterComponent = () => {
         }
       />
 
-      {/* Catch all route */}
+<Route
+        path="/profile"
+        element={
+          <ProtectedRoute>
+            <Profile />
+          </ProtectedRoute>
+        }
+      />
+
+<Route
+        path="/orders"
+        element={
+          <ProtectedRoute>
+            <Orders />
+          </ProtectedRoute>
+        }
+      />
+
+<Route
+        path="/invoices"
+        element={
+          <ProtectedRoute>
+            <Invoices />
+          </ProtectedRoute>
+        }
+      />
+
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );

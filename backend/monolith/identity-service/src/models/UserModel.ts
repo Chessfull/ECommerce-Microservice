@@ -1,6 +1,6 @@
 import { Document, ObjectId, Schema, model } from "mongoose";
 
-// This is interface of User Schema in mongo
+// -> This is interface of User Schema in mongo
 export interface IUser extends Document {
   _id: ObjectId;
   name: string;

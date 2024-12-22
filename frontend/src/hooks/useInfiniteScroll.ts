@@ -1,3 +1,5 @@
+// ************* I created this hook for infinite scroll logic (dynamic pagination) *************
+
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Product, ApiResponse } from "../types/main"
 
@@ -11,6 +13,7 @@ export const useInfiniteScroll = () => {
 
   const lastProductRef = useCallback((node: HTMLDivElement) => {
     
+    // -> 'hasMore' is coming from backend mean still more item to fetch not last
     if (loading || !hasMore) return;
 
     if (observer.current) observer.current.disconnect();
@@ -25,6 +28,7 @@ export const useInfiniteScroll = () => {
   }, [loading, hasMore]);
 
 
+  // -> Fetching products from backend with page and limit is 10 here
   const fetchProducts = async () => {
     try {
 

@@ -13,9 +13,10 @@ const PORT = process.env.SERVER_PORT || 3004;
 export const StartServer = async () => {
   try {
 
-    // First, connect to the database
+    // -> Connect to the database
     await connectToDatabase();
 
+    // -> Connect Kafka Service
     try {
       const invoiceKafkaService = new InvoiceServiceKafka(
         container.get<IInvoiceService>("IInvoiceService")
@@ -27,7 +28,7 @@ export const StartServer = async () => {
       logger.error("Failed to connect to Kafka:", error);
     }
 
-    // -> Then start the server if database connection is successful
+    // -> Then start the server if connection is successful
     expressApp.listen(PORT, () => {
       console.log(`Listening port at ${PORT}`);
     });
@@ -42,10 +43,10 @@ export const StartServer = async () => {
       "Database connection failed, shutting down the server",
       error
     );
-    process.exit(1); // Stop the process if the database connection fails
+    process.exit(1); // Stop the process if the connection fails
   }
 };
 
 StartServer().then(() => {
-  console.log("Server is up!");
+  console.log(`Server is up in ${PORT} port!`);
 });

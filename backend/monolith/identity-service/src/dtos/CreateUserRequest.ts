@@ -1,3 +1,5 @@
+// -> Created for taking new user infos from request body in controller
+
 import { IsString, IsEmail, MinLength, MaxLength } from "class-validator";
 
 export class CreateUserRequest {

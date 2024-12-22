@@ -4,9 +4,6 @@ import { logger } from "../../config/logger";
 import { IUserValidRepository } from "./IUserValidRepository";
 import { UserValidDto } from "../dtos/UserValidDto";
 
-
-
-
 @injectable()
 export class UserValidRepository implements IUserValidRepository {
  

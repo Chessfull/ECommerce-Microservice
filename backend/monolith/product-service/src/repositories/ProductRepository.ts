@@ -1,3 +1,5 @@
+// ************ Database -> Repository -> Service -> Controller **********
+
 import { IProductRepository } from "./IProductRepository";
 import { Product } from "../models/ProductModel";
 import { injectable } from "inversify";

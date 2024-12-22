@@ -1,5 +1,6 @@
+// -> Created for sending new user infos to service(my business logic) from controller.
+
 export class CreateUserDTO {
-  // -> Created for sending new user infos to service(my business logic) from controller.
   name: string;
   surname: string;
   email: string;

@@ -1,3 +1,5 @@
+// **************** Identity Service Kafka Producer Settings ****************
+
 import { Kafka } from "kafkajs";
 import { logger } from "../../../config/logger";
 import { UserEventType } from "./types";
@@ -9,13 +11,12 @@ interface UserEvent {
 }
 
 export class UserEventPublisher {
+  
   private kafka: Kafka;
   private producer;
- 
   
-
   constructor() {
-  
+    //-> Init
     this.kafka = new Kafka({
       clientId: "user-service",
       brokers: ["localhost:9092"],

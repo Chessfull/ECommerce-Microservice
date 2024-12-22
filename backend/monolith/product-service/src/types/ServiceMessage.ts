@@ -8,6 +8,7 @@ export class ServiceMessage<T = undefined, P = undefined> {
   public readonly Message: any;
 
   // -> Constructor overloads for different possibilities ( With only message and bool, with generic data, with generic paginationresponse I defined below )
+  
   constructor(isSucceed: boolean, message: any);
   constructor(isSucceed: boolean, message: any, data: T);
   constructor(isSucceed: boolean, message: any, data: T, pagination: P);

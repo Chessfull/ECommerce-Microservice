@@ -1,6 +1,6 @@
-// ******* I created this for typescript using payload from request - global express *******
+// ******* I created this for typescript global settings *******
+
 import { JwtPayload } from "jsonwebtoken";
-import { Multer } from "multer"; 
 
 declare global {
   namespace Express {

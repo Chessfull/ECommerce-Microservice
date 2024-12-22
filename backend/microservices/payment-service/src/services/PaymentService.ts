@@ -8,6 +8,8 @@ import { IPaymentService } from "./IPaymentService";
 import { inject, injectable } from "inversify";
 import { PaymentEvent } from "../types/PaymentEvent";
 
+// -> I m managing my controller-service communication with 'ServiceMessage' type I defined in '/types'.
+
 @injectable()
 export class PaymentService implements IPaymentService {
   private _paymentRepository: IPaymentRepository;
@@ -24,6 +26,7 @@ export class PaymentService implements IPaymentService {
   async createPayment(
     paymentDto: PaymentDto
   ): Promise<ServiceMessage<Payment>> {
+    
     // -> Desctruct from paymentDto
     const { userId, cardNo, products, totalAmount } = paymentDto;
 
@@ -39,7 +42,7 @@ export class PaymentService implements IPaymentService {
       totalAmount,
     });
 
-    // Save to database
+    // -> Save to database
     try {
       const savedPayment = await this._paymentRepository.createPayment(payment);
 

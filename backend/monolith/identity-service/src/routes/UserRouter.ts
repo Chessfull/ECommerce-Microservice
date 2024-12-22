@@ -5,7 +5,7 @@ import { authenticateToken } from "../middlewares/authMiddleware";
 import { JwtPayload } from "jsonwebtoken";
 import { asyncHandler } from "../middlewares/asyncHandler";
 
-// For getting payload for typescript
+// -> For getting payload for typescript
 declare global {
   namespace Express {
     interface Request {

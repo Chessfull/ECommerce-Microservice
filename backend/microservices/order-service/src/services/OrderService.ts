@@ -7,6 +7,8 @@ import { OrderDto } from "../dtos/OrderDto";
 import { ServiceMessage } from "../types/ServiceMessage";
 import { logger } from "../config/logger";
 
+// -> I m managing my controller-service communication with 'ServiceMessage' type I defined in '/types'.
+
 @injectable()
 export class OrderService implements IOrderService {
   private readonly orderRepository: IOrderRepository;
@@ -19,7 +21,11 @@ export class OrderService implements IOrderService {
     // -> Desctruct from paymentDto
     const { userId,paymentId, products, totalPrice } = orderDto;
 
+  //  console.log("Products at Service",products);
+
     const order = new Order({ userId, paymentId, products, totalPrice });
+
+    // console.log("ORDER at Service",order);
 
     try {
       const savedOrder = await this.orderRepository.createOrder(order);

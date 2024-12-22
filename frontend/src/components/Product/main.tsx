@@ -1,10 +1,10 @@
+// ********* Product main actions here *********
+
 import { useState } from "react";
 import { LoadingSpinner } from "../LoadingSpinner/LoadingSpinner";
 import { ProductCard } from "./ProductCard/ProductCard";
 import { ProductControls } from "./ProductControls/ProductControls";
 import { useInfiniteScroll } from "../../hooks/useInfiniteScroll";
-
-
 
 function Product() {
 

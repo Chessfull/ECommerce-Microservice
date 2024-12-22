@@ -1,5 +1,6 @@
+// -> Created for sending user infos to client - 'user/profile' endpoint.
+
 export class GetUserDetailsDto {
-  // -> Created for sending user infos to client - 'user/profile' endpoint.
   id:string
   name: string;
   surname: string;

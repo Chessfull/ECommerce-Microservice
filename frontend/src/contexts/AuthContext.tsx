@@ -1,9 +1,13 @@
-import React, {
+// ************* This context for managing my auth op logic *************
+
+import {
   createContext,
   useState,
   useCallback,
   useEffect,
   useContext,
+  FC,
+  ReactNode,
 } from "react";
 import {
   User,
@@ -24,7 +28,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 const BASE_URL = "http://localhost:3000/auth";
 
-export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
+export const AuthProvider: FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [authState, setAuthState] = useState<AuthState>({
@@ -34,19 +38,20 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     isAuthenticated: !!storage.getToken(),
   });
 
-  // Update auth state and storage
+  // -> Update auth state and storage
   const updateAuthState = useCallback((newState: Partial<AuthState>) => {
     setAuthState((prev) => ({
       ...prev,
       ...newState,
     }));
 
-    // Update storage based on new state
+    // -> Update storage based on new state
     if (newState.token) storage.setToken(newState.token);
     if (newState.userId) storage.setUserId(newState.userId);
     if (newState.user) storage.setUser(newState.user);
   }, []);
 
+  // -> Login actions
   const login = async (credentials: LoginCredentials) => {
     try {
       const response = await fetch(`${BASE_URL}/login`, {
@@ -63,7 +68,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         throw new Error(data.message || "Login failed");
       }
 
-      // Get user profile after successful login
+      // -> Get user profile after successful login with  provided token from backend
       const userResponse = await fetch(
         `${BASE_URL.replace("/auth", "")}/user/profile`,
         {
@@ -91,6 +96,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   };
 
+  // -> Signup actions
   const signup = async (credentials: SignupCredentials) => {
     try {
       const response = await fetch(`${BASE_URL}/register`, {
@@ -107,7 +113,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         throw new Error(data.message || "Signup failed");
       }
 
-      // Get user profile after successful registration
+      // -> Get user profile after successful registration with provided token from backend
       const userResponse = await fetch(
         `${BASE_URL.replace("/auth", "")}/user/profile`,
         {
@@ -135,6 +141,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   };
 
+  // -> Logout actions
   const logout = useCallback(() => {
     storage.clearAuth();
     setAuthState({
@@ -152,12 +159,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     [updateAuthState]
   );
 
-  // Add authentication header to all requests
+  // -> Adding authentication header to all requests
   useEffect(() => {
     const token = authState.token;
     if (token) {
-      // You can set up axios interceptors here if you're using axios
-      // Or modify your fetch wrapper to include the token
     }
   }, [authState.token]);
 
@@ -172,7 +177,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
-// Custom hook to use auth context
+// -> Custom hook to use auth context
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (context === undefined) {
@@ -181,7 +186,7 @@ export const useAuth = () => {
   return context;
 };
 
-// Optional: Protected Route component
+// -> Protected Route component
 import { Navigate, useLocation } from "react-router-dom";
 
 export const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({

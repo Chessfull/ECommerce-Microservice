@@ -1,3 +1,5 @@
+// **************** Identity Redis Service Settings ****************
+
 import Redis from "ioredis";
 import { inject, injectable } from "inversify";
 import { IIdentityRedisService as IIdentityRedisService } from "./IIdentityRedisService";
@@ -8,7 +10,6 @@ export class IdentityRedisService implements IIdentityRedisService {
 
   constructor(@inject("RedisClient") redisClient: Redis) {
     this._redis = redisClient;
-    
   }
 
   async setToken(
@@ -27,7 +28,7 @@ export class IdentityRedisService implements IIdentityRedisService {
     await this._redis.del(`auth:${userId}`);
   }
 
-  // -> This is for checking redis working or not, I will check datas from Redis-Cli after container app image from docker ( I use windows an redis want wsl2 etc. I dont want do it for now)
+  // -> This is for checking redis working or not, I will check datas from Redis-Cli
   async ping(): Promise<boolean> {
     try {
       const response = await this._redis.ping();

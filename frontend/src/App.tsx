@@ -5,11 +5,12 @@ import { CartProvider } from "./contexts/CartContext";
 import { AuthProvider } from "./contexts/AuthContext";
 import { BrowserRouter } from "react-router-dom";
 import { Bounce, ToastContainer } from "react-toastify";
+import { WebSocketProvider } from "./contexts/WebSocketContext";
 
 const App = () => {
   return (
     <BrowserRouter>
-      <ToastContainer
+      <ToastContainer // -> After successfull checkout
         position="top-right"
         autoClose={5000}
         hideProgressBar={false}
@@ -23,15 +24,17 @@ const App = () => {
         transition={Bounce}
       />
       <AuthProvider>
-        <CartProvider>
-          <div className="min-h-screen flex flex-col bg-gray-50">
-            <Navbar />
-            <main className="flex-grow container mx-auto px-4 py-8">
-              <RouterComponent />
-            </main>
-            <Footer />
-          </div>
-        </CartProvider>
+        <WebSocketProvider>
+          <CartProvider>
+            <div className="min-h-screen flex flex-col bg-gray-50">
+              <Navbar />
+              <main className="flex-grow container mx-auto px-4 py-8">
+                <RouterComponent />
+              </main>
+              <Footer />
+            </div>
+          </CartProvider>
+        </WebSocketProvider>
       </AuthProvider>
     </BrowserRouter>
   );

@@ -1,6 +1,5 @@
 import { injectable } from "inversify";
 import { IPaymentRepository } from "./IPaymentRepository";
-import { PaymentDto } from "../dtos/PaymentDto";
 import { Payment } from "../models/PaymentModel";
 import { logger } from "../config/logger";
 

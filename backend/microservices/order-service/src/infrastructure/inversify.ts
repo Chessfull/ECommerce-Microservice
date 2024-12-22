@@ -1,3 +1,5 @@
+// **************** This is my container for my dependency injections with 'inversify' ****************
+
 import { Container } from "inversify";
 import { OrderService } from "../services/OrderService";
 import { IOrderService } from "../services/IOrderService";

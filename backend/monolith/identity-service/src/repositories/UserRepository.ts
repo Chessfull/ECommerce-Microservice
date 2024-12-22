@@ -1,3 +1,5 @@
+// ************ Database -> Repository -> Service -> Controller **********
+
 import { injectable } from "inversify";
 import { IUser, User } from "../models/UserModel";
 import { IUserRepository } from "./IUserRepository";
@@ -5,7 +7,7 @@ import { IUserRepository } from "./IUserRepository";
 @injectable()
 export class UserRepository implements IUserRepository {
  
-  // Find a user by ID
+  // -> Find a user by ID
   async findById(id: string): Promise<IUser | null> {
     try {
       const user = await User.findById(id);
@@ -16,7 +18,7 @@ export class UserRepository implements IUserRepository {
     }
   }
 
-  // Update user information
+  // -> Update user information
   async update(id: string, user: Partial<IUser>): Promise<IUser | null> {
     try {
       const updatedUser = await User.findByIdAndUpdate(id, user, {
@@ -29,16 +31,16 @@ export class UserRepository implements IUserRepository {
     }
   }
 
-  // Soft delete a user by default, but I created optional for hard delete too if necessary
+  // -> Soft delete a user by default, but I created optional for hard delete too if necessary
   async delete(id: string, hardDelete: boolean = false): Promise<void> {
     try {
       const user = await User.findById(id);
       if (user) {
         if (hardDelete) {
-          // Hard delete: Remove the user completely from the database
+          // -> Hard delete: Remove the user completely from the database
           await User.findByIdAndDelete(id);
         } else {
-          // Soft delete: Set 'isDeleted' to true and record the deletedAt timestamp
+          // -> Soft delete: Set 'isDeleted' to true and record the deletedAt timestamp
           user.isDeleted = true;
           user.deletedAt = new Date();
           await user.save();
@@ -50,5 +52,4 @@ export class UserRepository implements IUserRepository {
       console.error("Error deleting user:", error);
     }
   }
- 
 }

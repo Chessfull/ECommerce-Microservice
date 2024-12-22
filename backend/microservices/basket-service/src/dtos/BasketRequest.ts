@@ -16,13 +16,16 @@ export class BasketRequest {
   @IsString()
   productId: string;
 
+  productName:string;
+
   @IsNumber()
   quantity: number;
 
-  constructor(userId: string, productId: string, quantity: number) {
+  constructor(userId: string, productId: string,productName:string, quantity: number) {
     this.userId = userId;
     this.productId = productId;
     this.quantity = quantity;
+    this.productName = productName;
   }
   
 }

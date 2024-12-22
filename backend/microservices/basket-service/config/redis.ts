@@ -1,3 +1,5 @@
+// **************** My Redis Config ****************
+
 import Redis from "ioredis";
 
 const redisConfig = {

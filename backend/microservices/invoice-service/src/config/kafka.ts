@@ -1,3 +1,5 @@
+// **************** Invoice Service Kafka Consumer Settings ****************
+
 import { Consumer, Kafka } from "kafkajs";
 import { logger } from "./logger";
 import { IInvoiceService } from "../services/IInvoiceService";

@@ -1,3 +1,5 @@
+// **************** This is my container for my dependency injections with 'inversify' ****************
+
 import "reflect-metadata";
 import { Container } from "inversify";
 import { IPaymentService } from "../services/IPaymentService";

@@ -4,6 +4,7 @@ export interface PaymentEvent {
     userId: string;
     products: Array<{
       productId: string;
+      productName: string;
       quantity: number;
       price: number;
     }>;

@@ -1,3 +1,5 @@
+// **************** Product Redis Service Settings ****************
+
 import Redis from "ioredis";
 import { inject, injectable } from "inversify";
 import { IProductRedisService } from "./IProductRedisService";
@@ -52,7 +54,7 @@ export class ProductRedisService implements IProductRedisService {
           return parsedData as Product[];
         }
   
-        // If it is a single product, return it directly
+        // -> If it is a single product, return it directly
         return parsedData as Product;
       }
   
@@ -81,16 +83,16 @@ export class ProductRedisService implements IProductRedisService {
   // -> This is for completely deleting product cache
 async invalidateAllProductCache(): Promise<void> {
   try {
-    // Get all product cache keys from the set 'product:keys'
+    // -> Get all product cache keys from the set 'product:keys'
     const keys = await this._redis.smembers("product:keys");
 
     if (keys && keys.length > 0) {
       const pipeline = this._redis.pipeline();
 
-      // Delete all product keys (e.g., product:6761744c9b92f8106a97c556, etc.)
+      // -> Delete all product keys (e.g., product:6761744c9b92f8106a97c556, etc.)
       pipeline.del(...keys);
 
-      // Clear the set of cache keys ('product:keys')
+      // -> Clear the set of cache keys ('product:keys')
       pipeline.del("product:keys");
 
       await pipeline.exec();

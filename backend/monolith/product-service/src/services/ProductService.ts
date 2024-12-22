@@ -1,3 +1,5 @@
+// ************ Database -> Repository -> Service -> Controller **********
+
 import { inject } from "inversify";
 import { Product } from "../models/ProductModel";
 import { IProductRepository } from "../repositories/IProductRepository";
@@ -126,6 +128,7 @@ export class ProductService implements IProductService {
     }
   }
 
+  // -> I will use infinite scroll in my frontend
   async getAll(
     page: number = 1,
     limit: number = 10
@@ -154,13 +157,13 @@ export class ProductService implements IProductService {
         return new ServiceMessage(true, "Fetched from cache.", cachedProducts);
       }
 
-      // Calculate skip value for pagination
+      // -> Calculate skip value for pagination
       const skip = (page - 1) * limit;
 
-      // Get total count for pagination info
+      // -> Get total count for pagination info
       const totalCount = await this._productRepository.count({});
 
-      // Get paginated products
+      // -> Get paginated products
       const products = await this._productRepository.findAll(
         {},
         {
@@ -174,11 +177,11 @@ export class ProductService implements IProductService {
         return new ServiceMessage(false, "No products found.");
       }
 
-      // Calculate pagination info
+      // -> Calculate pagination info
       const totalPages = Math.ceil(totalCount / limit);
       const hasMore = page < totalPages;
 
-      // Create pagination response
+      // -> Create pagination response
       const paginatedResponse: PaginationResponse<Product> = {
         products: products,
         pagination: {
@@ -204,7 +207,7 @@ export class ProductService implements IProductService {
 
   async getById(id: string): Promise<ServiceMessage<Product | null>> {
     try {
-      // Try fetching from cache
+      // -> Try fetching from cache
       const cachedProduct = await this._productRedisService.getCachedProduct(
         id
       );

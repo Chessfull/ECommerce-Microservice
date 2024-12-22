@@ -6,9 +6,10 @@ import { authenticateToken } from "../middlewares/authMiddleware";
 
 const AuthRouter = Router();
 
-// AuthController from DI container
+// -> AuthController from DI container
 const authController = container.get(AuthController);
 
+// -> Routes
 AuthRouter.post(
   "/register",
   asyncHandler((req: Request, res: Response) => authController.register(req, res))
@@ -23,7 +24,5 @@ AuthRouter.post(
   "/logout",authenticateToken,
   asyncHandler((req: Request, res: Response) => authController.logout(req, res))
 );
-
-
 
 export default AuthRouter;

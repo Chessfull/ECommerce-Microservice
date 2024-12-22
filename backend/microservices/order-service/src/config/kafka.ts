@@ -1,3 +1,5 @@
+// **************** ORder Service Kafka Consumer Settings ****************
+
 import { Consumer, Kafka } from "kafkajs";
 import { logger } from "./logger";
 import { IOrderService } from "../services/IOrderService";
@@ -64,6 +66,7 @@ export class OrderServiceKafka {
   private async processPaymentEvent(paymentEvent: PaymentEvent): Promise<void> {
     try {
     
+
       if (paymentEvent.status === "SUCCESS") {
         const orderDto: OrderDto = {
           userId: paymentEvent.userId,

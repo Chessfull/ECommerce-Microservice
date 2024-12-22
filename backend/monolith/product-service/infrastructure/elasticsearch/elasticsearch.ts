@@ -1,14 +1,13 @@
-// elasticsearchClient.js
 import { Client } from '@elastic/elasticsearch';
 
-// Initialize the Elasticsearch client
+// -> Initialize the Elasticsearch client
 const elasticsearchClient = new Client({
-  node: 'http://localhost:9200',  // Elasticsearch service running in Docker container
+  node: 'http://localhost:9200', 
   auth: {
-    username: 'elastic', // Default username for the Bitnami Elasticsearch image
-    password: 'elastictestnewmindai', // Password from Docker Compose
+    username: 'elastic', // -> Default username for the Bitnami Elasticsearch image
+    password: 'elastictestnewmindai',
   },
 });
 
-// Export the client so you can use it in other parts of your app
+// -> Export the client
 export default elasticsearchClient;

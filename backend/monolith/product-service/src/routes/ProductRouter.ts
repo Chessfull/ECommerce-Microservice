@@ -10,7 +10,7 @@ const ProductRouter = Router();
 const productController = container.get(ProductController);
 ;
 
-// Get all products
+// -> Get all products
 ProductRouter.get(
   "/",
   asyncHandler(async (req: Request, res: Response) => {
@@ -18,7 +18,7 @@ ProductRouter.get(
   })
 );
 
-// Get product by ID
+// -> Get product by ID
 ProductRouter.get(
   "/:id",
   asyncHandler(async (req: Request, res: Response) => {
@@ -26,7 +26,7 @@ ProductRouter.get(
   })
 );
 
-// Create a new product
+// -> Create a new product
 ProductRouter.post(
   "/",upload.single("image"),
   asyncHandler(async (req: Request, res: Response) => {
@@ -34,7 +34,7 @@ ProductRouter.post(
   })
 );
 
-// Update an existing product
+// -> Update an existing product
 ProductRouter.put(
   "/:id",
   asyncHandler(async (req: Request, res: Response) => {
@@ -42,7 +42,7 @@ ProductRouter.put(
   })
 );
 
-// Delete a product
+// -> Delete a product
 ProductRouter.delete(
   "/:id",
   asyncHandler(async (req: Request, res: Response) => {

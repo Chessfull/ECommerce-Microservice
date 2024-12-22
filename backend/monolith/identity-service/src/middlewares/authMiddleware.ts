@@ -1,11 +1,10 @@
+// -> Created for jwt auth, getting token from header and check
+
 import { Request, Response, NextFunction } from "express";
-import jwt, { JwtPayload } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import { container } from "../../../config/inversify";
-import { IdentityRedisService } from "../../infrastructure/redis/IdentityRedisService";
 import { asyncHandler } from "./asyncHandler";
 import { IIdentityRedisService } from "../../infrastructure/redis/IIdentityRedisService";
-
-// -> Created for jwt auth, getting token from header and check
 
 export const authenticateToken = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
@@ -24,7 +23,7 @@ export const authenticateToken = asyncHandler(
       const redisService =
         container.get<IIdentityRedisService>("IIdentityRedisService");
 
-      // Verify token exists in Redis
+      // -> Verify token exists in Redis
       const cachedToken = await redisService.getToken(decoded.id);
 
       if (!cachedToken || cachedToken !== token) {

@@ -1,8 +1,9 @@
+// **************** Basket Redis Service Settings ****************
+
 import { inject, injectable } from "inversify";
 import { IBasketRedisService } from "./IBasketRedisService";
 import Redis from "ioredis";
 import { ServiceMessage } from "../../src/types/ServiceMessage";
-import { logger } from "../../config/logger";
 
 @injectable()
 export class BasketRedisService implements IBasketRedisService {
@@ -10,18 +11,17 @@ export class BasketRedisService implements IBasketRedisService {
   private DEFAULT_EXP = 3600;
 
   constructor(@inject("RedisClient") redisClient: Redis) {
-
     this._redis = redisClient;
-
   }
 
   // -> Generic T get from redis cache method I define
   async getCache<T>(key: string): Promise<ServiceMessage<T | null>> {
-    
+   
     const value = await this._redis.get(key);
 
+
+
     if (value === null) {
-  
       return new ServiceMessage(
         false,
         `There is no value with that ${key} key...`,
@@ -70,7 +70,8 @@ export class BasketRedisService implements IBasketRedisService {
   // -> Generic T delete cache from redis method
   async deleteCache(key: string): Promise<ServiceMessage<null>> {
     try {
-      const deleteResult = await this._redis.del(`basket:${key}`);
+
+      const deleteResult = await this._redis.del(key);
 
       if (deleteResult === 0) {
         return new ServiceMessage(

@@ -1,3 +1,5 @@
+// ************* Storage get/set Organization Here *************
+
 import { User } from "../types/auth";
 
 export const storage = {

@@ -1,6 +1,5 @@
 // -> Redis Servis Interface
 
-import { BasketDto } from "../../src/dtos/BasketDto";
 import {ServiceMessage} from "../../src/types/ServiceMessage";
 
 export interface IBasketRedisService {

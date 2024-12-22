@@ -1,5 +1,8 @@
+// **************** Kafka Config ****************
+
 import { Kafka } from 'kafkajs';
 
+// -> Init
 const kafka = new Kafka({
     clientId: 'newmind-ecommerce-project',
     brokers: [process.env.KAFKA_BROKER || 'localhost:9092'],

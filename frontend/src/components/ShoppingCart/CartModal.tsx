@@ -1,7 +1,10 @@
-import { X } from "lucide-react";
+// ********* Shopping cart operations here *********
+
+import { X, Trash2 } from "lucide-react";
 import { BasketResponse } from "../../types/cart";
 import { useState } from "react";
 import { CheckoutModal } from "../Checkout/CheckoutModal";
+import { useCart } from "../../contexts/CartContext";
 
 interface CartModalProps {
   isOpen: boolean;
@@ -12,6 +15,21 @@ interface CartModalProps {
 export const CartModal = ({ isOpen, onClose, basketData }: CartModalProps) => {
   if (!isOpen) return null;
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+  const { deleteFromCart, deleteAllFromCart } = useCart();
+  const [isDeleting, setIsDeleting] = useState<string | null>(null);
+  const [isDeletingAll, setIsDeletingAll] = useState(false);
+
+  const handleDelete = async (productId: string) => {
+    setIsDeleting(productId);
+    await deleteFromCart(productId);
+    setIsDeleting(null);
+  };
+
+  const handleDeleteAll = async () => {
+    setIsDeletingAll(true);
+    await deleteAllFromCart();
+    setIsDeletingAll(false);
+  };
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-end">
@@ -46,9 +64,18 @@ export const CartModal = ({ isOpen, onClose, basketData }: CartModalProps) => {
                             Quantity: {item.quantity}
                           </span>
                         </div>
-                        <span className="font-medium">
-                          ${(item.price * item.quantity).toFixed(2)}
-                        </span>
+                        <div className="flex items-center gap-3">
+                          <span className="font-medium">
+                            ${(item.price * item.quantity).toFixed(2)}
+                          </span>
+                          <button
+                            onClick={() => handleDelete(item.id)}
+                            disabled={isDeleting === item.id}
+                            className="p-1 hover:bg-red-100 rounded text-red-600 transition-colors"
+                          >
+                            <Trash2 className="h-5 w-5" />
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -62,12 +89,21 @@ export const CartModal = ({ isOpen, onClose, basketData }: CartModalProps) => {
                 </div>
               </div>
 
-              <button
-                onClick={() => setIsCheckoutOpen(true)}
-                className="w-full mt-6 px-4 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700"
-              >
-                Checkout
-              </button>
+              <div className="flex flex-col gap-3 mt-6">
+                <button
+                  onClick={handleDeleteAll}
+                  disabled={isDeletingAll}
+                  className="w-full px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors disabled:opacity-50"
+                >
+                  Delete All Items
+                </button>
+                <button
+                  onClick={() => setIsCheckoutOpen(true)}
+                  className="w-full px-4 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition-colors"
+                >
+                  Checkout
+                </button>
+              </div>
 
               {isCheckoutOpen && (
                 <CheckoutModal

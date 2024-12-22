@@ -1,3 +1,5 @@
+// ********* With click checkout modal operations here *********
+
 import { useState } from "react";
 import { useAuth } from "../../contexts/AuthContext";
 import { BasketResponse } from "../../types/cart";
@@ -35,7 +37,7 @@ export const CheckoutModal = ({
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
-    // Format card number with spaces
+    // -> Format card number with spaces regex here
     if (name === "cardNumber") {
       const formatted = value
         .replace(/\s/g, "")
@@ -45,7 +47,7 @@ export const CheckoutModal = ({
       return;
     }
 
-    // Format expiry date
+    // -> Format expiry date regex here
     if (name === "expiryDate") {
       const formatted = value
         .replace(/\D/g, "")
@@ -64,6 +66,7 @@ export const CheckoutModal = ({
     setIsSubmitting(true);
 
     try {
+      
       const orderData = {
         userId,
         products: basketData?.basketItems.map((item) => ({
@@ -114,7 +117,7 @@ export const CheckoutModal = ({
 
         <form onSubmit={handleSubmit}>
           <div className="flex">
-            {/* Payment Information - Left Side */}
+            
             <div className="w-1/2 p-6 border-r">
               <h3 className="text-lg font-medium mb-4">Payment Information</h3>
 

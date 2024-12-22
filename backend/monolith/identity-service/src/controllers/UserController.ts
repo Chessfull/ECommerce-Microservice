@@ -1,19 +1,20 @@
+// **************** User Controller (Profile operations etc.) ****************
+
 import { inject, injectable } from "inversify";
 import { Request, Response } from "express";
 import { IUserService } from "../services/IUserService";
 import { JwtPayload } from "jsonwebtoken";
 
-//#region ************* Constructor *************
-@injectable()
+
+@injectable() // -> This is for dependency injection - inversify
 export class UserController {
   private _userService: IUserService;
 
   constructor(@inject("IUserService") userService: IUserService) {
     this._userService = userService;
   }
-//#endregion
 
-  //#region ************* Get User Profile *************
+  // ************* Get User Profile *************
   async getProfile(req: Request, res: Response) {
     try {
       
@@ -30,9 +31,9 @@ export class UserController {
       return res.status(500).json({ message: "Server-side error", error });
     }
   }
-  //#endregion
 
-  //#region ************* Update User Profile *************
+
+  // ************* Update User Profile *************
   async updateProfile(req: Request, res: Response) {
     try {
       
@@ -54,9 +55,8 @@ export class UserController {
       return res.status(500).json({ message: "Server-side error", error });
     }
   }
-  //#endregion
 
-  //#region ************* Delete User *************
+  // ************* Delete User *************
   async deleteUser(req: Request, res: Response) {
     try {
 
@@ -75,8 +75,8 @@ export class UserController {
       return res.status(500).json({ message: "Server-side error", error });
     }
   }
-  //#endregion
 
+   // ************* Valid User Mostly for Basket Microservice Redis *************
   async userValid(req:Request,res:Response){
     
     const { id } = req.params;
@@ -93,6 +93,5 @@ export class UserController {
     } catch (error) {
       return res.status(500).json({ message: "Server-side error", error });
     }
-
   }
 }

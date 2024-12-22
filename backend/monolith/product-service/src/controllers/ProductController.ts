@@ -17,7 +17,7 @@ export class ProductController {
     this._productService = productService;
   }
 
-  //#region *********** GET: getAll ***********
+  // *********** GET: getAll ***********
   async getAll(req: Request, res: Response) {
     try {
 
@@ -46,9 +46,8 @@ export class ProductController {
       return res.status(500).json({ message: "Server-side error", error });
     }
   }
-  //#endregion
 
-  //#region *********** GET: getById ***********
+  // *********** GET: getById ***********
   async getById(req: Request, res: Response) {
     try {
       const serviceResult = await this._productService.getById(req.params.id);
@@ -60,9 +59,8 @@ export class ProductController {
       return res.status(500).json({ message: "Server-side error", error });
     }
   }
-  //#endregion
 
-  //#region *********** POST: Create ***********
+  // *********** POST: Create ***********
   async create(req: Request, res: Response) {
     // -> Desctruct from request body
     const { name, category, description, price, stock, image } = req.body;
@@ -133,9 +131,7 @@ export class ProductController {
   //   return res.status(500).json({ message: "Server-side error", error });
   // }
 
-  //#endregion
-
-  //#region *********** PUT: Update ***********
+  // *********** PUT: Update ***********
   async update(req: Request, res: Response) {
     try {
       const productId = req.params.id;
@@ -157,9 +153,8 @@ export class ProductController {
       return res.status(500).json({ message: "Server-side error", error });
     }
   }
-  //#endregion
 
-  //#region *********** POST: Delete ***********
+  // *********** POST: Delete ***********
   async delete(req: Request, res: Response) {
     try {
       const productId = req.params.id;
@@ -175,5 +170,4 @@ export class ProductController {
       return res.status(500).json({ message: "Server-side error", error });
     }
   }
-  //#endregion
 }

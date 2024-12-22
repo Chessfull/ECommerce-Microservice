@@ -1,3 +1,5 @@
+// **************** Product Service Kafka Producer Settings ****************
+
 import { Kafka } from "kafkajs";
 import { logger } from "../../../config/logger";
 import { ProductEventType } from "./types";

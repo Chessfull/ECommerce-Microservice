@@ -1,3 +1,5 @@
+// **************** This is my container for my dependency injections with 'inversify' ****************
+
 import "reflect-metadata";
 import { Container } from "inversify";
 import {IBasketRepository} from "../src/repositories/IBasketRepository";
@@ -12,6 +14,8 @@ import {BasketItemRepository} from "../src/repositories/BasketItemRepository";
 import {IUserValidRepository} from "../src/repositories/IUserValidRepository";
 import {UserValidRepository} from "../src/repositories/UserValidRepository";
 import { BasketEventConsumer } from "../infrastructure/kafka/main";
+import { IWebSocketService } from "../src/services/IWebSocketService";
+import { WebSocketService } from "../src/services/WebSocketService";
 import Redis from "ioredis";
 import { redisClient } from "./redis"
 
@@ -38,6 +42,10 @@ container
 .bind<BasketEventConsumer>("BasketEventConsumer")
 .to(BasketEventConsumer)
 .inSingletonScope();
+
+container.bind<IWebSocketService>("IWebSocketService")
+  .to(WebSocketService)
+  .inSingletonScope();
 
 
 export { container };

@@ -1,6 +1,5 @@
 import multer from 'multer';
 import {v4 as uuidv4} from 'uuid';
-import { Request, Response, NextFunction } from 'express';
 import path from 'path';
 
 const storage = multer.diskStorage({

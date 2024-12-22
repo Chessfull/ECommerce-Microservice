@@ -1,3 +1,5 @@
+// **************** Basket Service Kafka Consumer Settings ****************
+
 import { Kafka, Consumer, EachMessagePayload } from "kafkajs";
 import { IBasketRepository } from "../../src/repositories/IBasketRepository";
 import { IBasketItemRepository } from "../../src/repositories/IBasketItemRepository";
@@ -216,6 +218,7 @@ export class BasketEventConsumer {
       }
 
       case "PRODUCT_DELETED": {
+
         // -> Delete from cache first
         await this.basketItemRepository.deleteBasketItem(productId);
 

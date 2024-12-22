@@ -11,6 +11,8 @@ import { UserValidDto } from "../dtos/UserValidDto";
 import { logger } from "../../config/logger";
 import { BasketItemDto } from "../dtos/BasketItemDto";
 
+// -> I m managing my controller-service communication with 'ServiceMessage' type I defined in '/types'.
+
 export class BasketService implements IBasketService {
   private readonly USER_VALID_TTL = 60 * 60 * 24 * 1; // 1 days
   private readonly PRODUCT_VALID_TTL = 60 * 60 * 24 * 7; // 7 days
@@ -57,7 +59,7 @@ export class BasketService implements IBasketService {
     basketRequest: BasketRequest
   ): Promise<ServiceMessage<BasketDto>> {
     try {
-      const { userId, productId, quantity } = basketRequest;
+      const { userId, productId, productName, quantity } = basketRequest;
 
       // -> Validate user
       const isValidUser = await this.validateUser(userId);
@@ -152,7 +154,7 @@ export class BasketService implements IBasketService {
   private async validateAndGetProduct(
     productId: string
   ): Promise<BasketItemDto | null> {
-    // Check Redis cache first
+    // -> Check Redis cache first
     const cachedProduct = await this.basketItemRepository.getBasketItem(
       productId
     );
@@ -161,13 +163,11 @@ export class BasketService implements IBasketService {
       return cachedProduct;
     }
 
-    // Get product details from Product Service if not in cache
+    // -> Get product details from Product Service if not in cache
     try {
-
       const response = await axios.get(
         `http://localhost:3000/products/${productId}`
       );
-
 
       if (response.status === 200) {
         const product = response.data;
@@ -201,7 +201,6 @@ export class BasketService implements IBasketService {
     product: BasketItemDto,
     quantity: number
   ): void {
-    
     const existingItemIndex = basket.basketItems.findIndex(
       (item) => item.id === product.id
     );
@@ -225,5 +224,58 @@ export class BasketService implements IBasketService {
     // -> Update total price using the DTO's method
     basket.totalPrice = basket.calculateTotalPrice();
     basket.updateAt = new Date();
+  }
+
+  async removeProductFromBasket(
+    userId: string,
+    productId: string
+  ): Promise<ServiceMessage<BasketDto>> {
+    try {
+      // -> Get the existing basket
+      const existingBasket = await this.basketRepository.getBasket(userId);
+
+      if (!existingBasket) {
+        return new ServiceMessage(false, "Basket not found");
+      }
+
+      const basket = new BasketDto(
+        existingBasket.userId,
+        existingBasket.basketItems,
+        existingBasket.totalPrice,
+        existingBasket.createdAt,
+        existingBasket.updateAt
+      );
+
+      // -> Find the product in the basket
+      const productIndex = basket.basketItems.findIndex(
+        (item) => item.id === productId
+      );
+
+      if (productIndex === -1) {
+        return new ServiceMessage(false, "Product not found in basket");
+      }
+
+      // -> Remove the product from the basket
+      basket.basketItems.splice(productIndex, 1);
+
+      // -> Update total price and timestamp
+      basket.totalPrice = basket.calculateTotalPrice();
+      basket.updateAt = new Date();
+
+      // -> Save updated basket to repository
+      await this.basketRepository.saveBasket(basket, this.BASKET_TTL);
+
+      return new ServiceMessage(
+        true,
+        "Product removed from basket successfully",
+        basket
+      );
+    } catch (error) {
+      logger.error("[Basket Service - removeProductFromBasket]", error);
+      return new ServiceMessage(
+        false,
+        `Error removing product from basket: ${error}`
+      );
+    }
   }
 }

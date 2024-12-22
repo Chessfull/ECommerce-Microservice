@@ -1,3 +1,5 @@
+// ************ Database -> Repository -> Service -> Controller **********
+
 import { inject, injectable } from "inversify";
 import { IAuthService } from "../services/IAuthService";
 import { CreateUserDTO } from "../dtos/CreateUserDto";
@@ -12,8 +14,7 @@ import { logger } from "../../../config/logger";
 
 // -> I m managing my controller-service communication with 'ServiceMessage' type I defined in '/types'.
 
-//#region ************* Constructor *************
-@injectable()
+@injectable() // -> Injection inversify
 export class AuthService implements IAuthService {
   private _authRepository: IAuthRepository;
   private _redisService: IIdentityRedisService;
@@ -28,9 +29,8 @@ export class AuthService implements IAuthService {
     this._redisService = redisService;
     this._eventPublisher = userEventPublisher;
   }
-  //#endregion
 
-  //#region ************* Register a new user *************
+  // ************* Register a new user *************
   async register(
     createUserDto: CreateUserDTO
   ): Promise<ServiceMessage<{ token: string }>> {
@@ -88,7 +88,7 @@ export class AuthService implements IAuthService {
         );
       }
 
-      // Helper method I created for generate token
+      // -> Helper method I created for generate token
       const token = generateToken(
         { id: newUser._id, email: newUser.email, role: newUser.role },
         process.env.JWT_SECRET as string,
@@ -109,9 +109,9 @@ export class AuthService implements IAuthService {
       );
     }
   }
-  //#endregion
 
-  //#region ************* Login user *************
+
+  // ************* Login user *************
 
   async login(
     email: string,
@@ -155,9 +155,9 @@ export class AuthService implements IAuthService {
       return new ServiceMessage(false, `Error during token...${error}`);
     }
   }
-  //#endregion
 
-  //#region ************* Logout user *************
+
+  // ************* Logout user *************
 
   async logout(userId: string): Promise<ServiceMessage<void>> {
     try {

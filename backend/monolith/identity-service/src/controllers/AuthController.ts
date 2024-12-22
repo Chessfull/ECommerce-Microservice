@@ -1,3 +1,5 @@
+// **************** Auth Controller (Register, Login, Logout) ****************
+
 import { inject, injectable } from "inversify";
 import { Request, Response } from "express";
 import { CreateUserRequest } from "../dtos/CreateUserRequest";
@@ -7,18 +9,18 @@ import { plainToClass } from "class-transformer";
 import { IAuthService } from "../services/IAuthService";
 import { JwtPayload } from "jsonwebtoken";
 
-//#region ************* Constructor *************
+
 @injectable() // -> This is for dependency injection - inversify
 export class AuthController {
+  
   // ▼ Constructor injection ( service ) below ▼
   private _authService: IAuthService;
 
   constructor(@inject("IAuthService") authService: IAuthService) {
     this._authService = authService;
   }
-  //#endregion
 
-//#region ************* Register a new user *************
+// ************* Register a new user *************
   async register(req: Request, res: Response) {
    
     // ▼ 1-Transform the request body into a CreateUserRequest object with using class-transformer ▼
@@ -56,9 +58,9 @@ export class AuthController {
       return res.status(500).json({ message: "Server-side error", error });
     }
   }
-  //#endregion
 
-//#region ************* Login user *************
+
+// ************* Login user *************
   async login(req: Request, res: Response) {
 
     // ▼ 1-Take email and password from body and sending to service ▼
@@ -83,9 +85,8 @@ export class AuthController {
 
     }
   }
-  //#endregion
 
-//#region ************* Logout user *************
+// ************* Logout user *************
 async logout(req: Request, res: Response) {
   
   try {
@@ -108,6 +109,4 @@ async logout(req: Request, res: Response) {
 
   }
 }
-//#endregion
-
-}
+};

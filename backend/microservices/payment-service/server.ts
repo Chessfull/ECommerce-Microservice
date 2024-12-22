@@ -35,10 +35,10 @@ export const StartServer = async () => {
       "Database connection failed, shutting down the server",
       error
     );
-    process.exit(1); // Stop the process if the database connection fails
+    process.exit(1); // Stop the process if connection fails
   }
 };
 
 StartServer().then(() => {
-  console.log("Server is up!");
+  console.log(`Server is up in ${PORT} port!`);
 });

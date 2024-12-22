@@ -1,9 +1,10 @@
 import "reflect-metadata";
-import expressApp from "./expressApp";
+import httpServer from "./expressApp";
 import { redisClient } from "./config/redis";
 import dotenv from "dotenv";
 import { BasketEventConsumer } from "./infrastructure/kafka/main";
 import { container } from "./config/inversify";
+import { IWebSocketService } from "./src/services/IWebSocketService";
 dotenv.config();
 
 const PORT = process.env.SERVER_PORT || 3001;
@@ -11,15 +12,22 @@ const PORT = process.env.SERVER_PORT || 3001;
 export const StartServer = async () => {
   try {
 
+    // -> Init websocket
+    const webSocketService =
+      container.get<IWebSocketService>("IWebSocketService");
+    webSocketService.initialize(httpServer);
 
-    const basketKafkaService = container.get<BasketEventConsumer>("BasketEventConsumer");
-
+    // -> Kafka connection
+    const basketKafkaService = container.get<BasketEventConsumer>(
+      "BasketEventConsumer"
+    );
     await basketKafkaService.start();
 
+    // -> Redis connection
     redisClient.on("connect", () => console.log("Redis connected"));
     redisClient.on("error", (err) => console.error("Redis error:", err));
 
-    expressApp.listen(PORT, () => {
+    httpServer.listen(PORT, () => {
       console.log(`Listening on port ${PORT}`);
     });
 
@@ -27,6 +35,7 @@ export const StartServer = async () => {
       console.error("Uncaught Exception:", err);
       process.exit(1);
     });
+
   } catch (error) {
     console.error("Failed to start the server:", error);
     process.exit(1);
@@ -34,5 +43,5 @@ export const StartServer = async () => {
 };
 
 StartServer().then(() => {
-  console.log("Server is up!");
+  console.log(`Server is up in ${PORT} port!`);
 });

@@ -1,3 +1,5 @@
+// ********* With click login-signup modal operations here *********
+
 import { X } from "lucide-react";
 import { useState } from "react";
 import { useAuth } from "../../contexts/AuthContext";
@@ -14,6 +16,7 @@ export const AuthModal = ({ isOpen, onClose, type }: AuthModalProps) => {
   const { login, signup } = useAuth();
   const [error, setError] = useState("");
 
+  // -> If login two field, if not (register) two field more
   const [formData, setFormData] = useState(
     type === "login"
       ? {

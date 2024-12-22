@@ -19,7 +19,6 @@ export class BasketRepository implements IBasketRepository {
   async getBasket(key:string):Promise<BasketDto | null>{
 
     try {
-
       
     const serviceResult = await this._redisService.getCache(`basket:${key}`);
 
@@ -105,7 +104,7 @@ export class BasketRepository implements IBasketRepository {
         
         if (basketResult.IsSucceed && basketResult.Data) {
           
-          // Check if basket contains the product
+          // -> Check if basket contains the product
           if (basketResult.Data.basketItems.some(item => item.id === productId)) {
             baskets.push(basketResult.Data);
           }

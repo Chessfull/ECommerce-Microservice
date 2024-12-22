@@ -1,3 +1,5 @@
+// ************* Managing Auth Operation Interfaces Here *************
+
 export interface User {
     id: string;
     name: string;
