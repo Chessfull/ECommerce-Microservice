@@ -1,5 +1,5 @@
 # ECommerce Fullstack Project | Microservice Architecture                                                                                                                                                                                                       
-
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB) ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white) ![Redis](https://img.shields.io/badge/redis-%23DD0031.svg?style=for-the-badge&logo=redis&logoColor=white) ![Apache Kafka](https://img.shields.io/badge/Apache%20Kafka-000?style=for-the-badge&logo=apachekafka) ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white) 	![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![Socket.io](https://img.shields.io/badge/Socket.io-black?style=for-the-badge&logo=socket.io&badgeColor=010101)
 
 This project is an **E-commerce platform** built using a combination of **modular monolithic** and **microservices architectures**. The application is designed to **handle** key e-commerce operations such as **user management**, **product management**, **shopping cart operations**, **payment processing**, **order creation**, and **invoice generation**. The system is developed with a focus on **scalability**, **performance**, and **asynchronous communication** between services.
@@ -19,7 +19,7 @@ This project is an **E-commerce platform** built using a combination of **modula
 
 # Coding Strategy
 
-************ Common Schema for All Services ************
+************ **Common Schema for All Services** ************
 
 **Database Layer**
 Uses Redis or MongoDB for data persistence, depending on the service requirements.
@@ -49,7 +49,7 @@ Global Error Handling ( Winston for logging ), Async Handler Typescript, JWT Aut
 **Router**
 Defines clear and RESTful API endpoints for client interaction.
 ________________________________________________________________________________________________________________________
-************ Technology Stack ************
+************ **Technology** ************
 
 Messaging:
 **Apache Kafka** for event **streaming** and **asynchronous communication**. **Socket.io** for **real-time notification**.
@@ -70,6 +70,125 @@ Containerization:
 Queue Management:
 **Redis** Streams or **Kafka topics** for handling **real-time updates**.
 ________________________________________________________________________________________________________________________
-
-
   **[⬆ Back to Table of Contents](#table-of-contents)**
+________________________________________________________________________________________________________________________
+# Service Responsibilities
+  
+************ **Modular Monolith Services** ************
+  
+**Identity Service**
+
+Manages user authentication and operations using JWT for security.
+
+Handles session management through Redis caching.
+
+Produces user-related events for downstream services.
+
+**Product Service**
+
+Handles product operations including creation, updates, and deletion.
+
+Integrates Redis for caching and Elasticsearch for product search.
+
+Produces product-related events for the Basket Service.
+
+************ **Microservices** ************
+
+**Basket Service**
+
+Subscribes to Kafka topics to consume user and product events.
+
+Updates the Redis cache to keep basket data in sync.
+
+Manages shopping cart operations with high performance.
+
+**Payment Service**
+
+Processes and approves payments.
+
+Produces payment-related events for Order and Invoice Services.
+
+**Order Service**
+
+Subscribes to payment events.
+
+Stores order data asynchronously in its database.
+
+**Invoice Service**
+
+Subscribes to payment events.
+
+Generates invoices and saves them in its database.
+
+________________________________________________________________________________________________________________________
+  **[⬆ Back to Table of Contents](#table-of-contents)**
+________________________________________________________________________________________________________________________
+
+# Architecture Overview
+
+************ **Kafka Event Streaming** ************
+
+**Identity Service and Product Service**
+
+Produce Events:
+
+UserCreated, UserUpdated, UserDeleted (Identity Service).
+
+ProductCreated, ProductUpdated, ProductDeleted (Product Service).
+
+**Basket Service**
+
+Consumes Events from Identity and Product Services.
+
+Updates Redis Cache accordingly to synchronize user and product data.
+
+**Payment Service**
+
+Produce Events:
+PaymentCreated.
+
+**Order Service and Invoice Service**
+
+Subscribe to Payment Events.
+
+Consume Messages to:
+
+Create new orders in the Order Service database.
+
+Generate invoices in the Invoice Service database.
+
+************ **Redis Integration** ************
+
+Identity Service:
+Uses Redis for session management to ensure secure and scalable authentication.
+
+Product Service:
+Caches Product Data in Redis for enhanced read performance.
+Integrated with Elasticsearch for advanced search capabilities.
+
+Basket Service:
+Core dependency on Redis for shopping cart and basket operations to handle frequent updates with high performance.
+
+________________________________________________________________________________________________________________________
+  **[⬆ Back to Table of Contents](#table-of-contents)**
+________________________________________________________________________________________________________________________
+
+# Project Planning and Flow on Miro
+
+________________________________________________________________________________________________________________________
+  **[⬆ Back to Table of Contents](#table-of-contents)**
+________________________________________________________________________________________________________________________
+
+
+# Project Demo Video
+
+________________________________________________________________________________________________________________________
+  **[⬆ Back to Table of Contents](#table-of-contents)**
+________________________________________________________________________________________________________________________
+
+# Getting Started
+
+________________________________________________________________________________________________________________________
+  **[⬆ Back to Table of Contents](#table-of-contents)**
+________________________________________________________________________________________________________________________
+
